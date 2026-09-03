@@ -68,23 +68,6 @@ function Section1({ onNext }: { onNext: () => void }) {
           <p className="opacity-70 text-base">Normally 4 September ko tu apne family ke saath busy hoti hai aur hum waise celebrate nahi kar paate...<br/>isliye iss baar thoda alag socha hai.</p>
         </div>
       </div>
-      
-      <div className="w-[85%] max-w-sm aspect-[4/5] relative bg-white/5 rounded-xl overflow-hidden border border-white/10 shadow-2xl">
-        {imgError ? (
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-white/40 p-4">
-            <span className="font-serif italic text-sm tracking-widest uppercase opacity-50 mb-2">Awaiting Media</span>
-            <span className="font-sans text-xs opacity-30">[Strong Riya Photo Placeholder]</span>
-          </div>
-        ) : (
-          <img 
-            src="/placeholder-birthday-reveal.jpg" 
-            alt="Birthday Reveal" 
-            className="absolute inset-0 w-full h-full object-cover"
-            onError={() => setImgError(true)}
-          />
-        )}
-      </div>
-      
       <NextButton onClick={onNext} text="Ek baat bolu? →" />
     </motion.div>
   );
@@ -289,8 +272,9 @@ function Section5({ onNext }: { onNext: () => void }) {
               className="absolute inset-0 w-full h-full object-cover"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
-                target.style.display = 'none';
-                target.parentElement!.innerHTML = '<div class="absolute inset-0 flex flex-col items-center justify-center text-white/40 p-4"><span class="font-sans text-xs opacity-30">[Photo Placeholder]</span></div>';
+                if (target.parentElement) {
+                  target.parentElement.style.display = 'none';
+                }
               }}
             />
           </div>

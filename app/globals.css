@@ -57,11 +57,7 @@ body::before {
   background-size: 200px 200px;
 }
 
-/* All content sits above the grain layer */
-body > * {
-  position: relative;
-  z-index: 1;
-}
+/* All content is layered naturally above the fixed before pseudo-element */
 
 /* Hide scrollbar for a cleaner cinematic experience but keep functionality */
 .no-scrollbar::-webkit-scrollbar {

@@ -35,7 +35,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable} ${greatVibes.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-background text-foreground font-sans">
-        {children}
+        <div className="relative z-10 flex-1 flex flex-col">
+          {children}
+        </div>
       </body>
     </html>
   );
