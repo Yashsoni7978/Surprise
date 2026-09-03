@@ -38,7 +38,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-cinematic-dark text-cinematic-light p-4 selection:bg-primary-accent/30 selection:text-cinematic-light">
+    <div className="min-h-screen flex items-center justify-center bg-[#faf6ee] text-[#2c2825] p-4">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -46,10 +46,10 @@ export default function LoginPage() {
         className="w-full max-w-md"
       >
         <div className="text-center mb-12">
-          <h1 className="font-serif text-3xl md:text-4xl tracking-wide font-light mb-4 text-white/90">
+          <h1 className="font-serif text-3xl md:text-4xl tracking-wide font-light mb-4 text-[#2c2825]">
             A Private Memory
           </h1>
-          <p className="text-white/50 text-sm font-sans font-light tracking-widest uppercase">
+          <p className="text-[#7a6f65] text-sm font-sans font-light tracking-widest uppercase">
             Riya & Yash
           </p>
         </div>
@@ -61,7 +61,7 @@ export default function LoginPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="What song were you dancing to?"
-              className="w-full bg-transparent border-b border-white/20 px-4 py-4 text-center text-lg focus:outline-none focus:border-white/60 transition-colors placeholder:text-white/20 font-serif"
+              className="w-full bg-transparent border-b border-[#2c2825]/20 px-4 py-4 text-center text-lg focus:outline-none focus:border-[#2c2825]/60 transition-colors placeholder:text-[#b5a898] font-serif"
               autoComplete="off"
               spellCheck="false"
               autoFocus
@@ -83,7 +83,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={isLoading || !password.trim()}
-            className="mt-4 border border-white/20 hover:border-white/60 bg-white/5 hover:bg-white/10 text-white/80 py-4 px-8 rounded-full transition-all disabled:opacity-50 disabled:cursor-not-allowed font-sans tracking-widest text-xs uppercase"
+            className="mt-4 border border-[#2c2825]/20 hover:border-[#2c2825]/50 bg-[#2c2825]/5 hover:bg-[#2c2825]/10 text-[#2c2825]/80 py-4 px-8 rounded-full transition-all disabled:opacity-50 disabled:cursor-not-allowed font-sans tracking-widest text-xs uppercase"
           >
             {isLoading ? 'Unlocking...' : 'Enter'}
           </button>

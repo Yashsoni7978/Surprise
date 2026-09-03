@@ -20,9 +20,19 @@ export default async function ChapterPage({ params }: PageProps) {
   const prevChapterId = getPrevChapterId(resolvedParams.id);
 
   return (
-    <main className={`min-h-screen relative overflow-hidden transition-colors duration-1000 ${chapter.theme === 'light' ? 'bg-[#f8f9fa] text-zinc-900' : 'bg-cinematic-dark text-cinematic-light'}`}>
-      <ChapterEngine 
-        chapter={chapter} 
+    <main
+      className={`min-h-screen relative overflow-hidden transition-colors duration-1000
+        bg-[#faf6ee]
+        ${chapter.theme === 'dark'
+          ? 'text-[#2c2825]'
+          : chapter.theme === 'warm'
+          ? 'text-[#3d342c]'
+          : 'text-[#2c2825]'
+        }`}
+      style={{ '--chapter-bg': '#faf6ee' } as React.CSSProperties}
+    >
+      <ChapterEngine
+        chapter={chapter}
         nextChapterId={nextChapterId}
         prevChapterId={prevChapterId}
       />

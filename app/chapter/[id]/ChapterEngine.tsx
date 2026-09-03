@@ -40,11 +40,11 @@ export function ChapterEngine({ chapter, nextChapterId, prevChapterId }: Chapter
   };
 
   return (
-    <div className="absolute inset-0 flex flex-col">
+    <div className="absolute inset-0 flex flex-col overflow-hidden">
       {/* Progress indicator (subtle) */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-white/5 z-50">
-        <motion.div 
-          className={`h-full ${chapter.theme === 'light' ? 'bg-black/20' : 'bg-white/20'}`}
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-[#2c2825]/8 z-50">
+        <motion.div
+          className="h-full bg-[#b5a898]/60"
           initial={{ width: 0 }}
           animate={{ width: `${((currentMemoryIndex + 1) / chapter.memories.length) * 100}%` }}
           transition={{ duration: 0.5 }}
@@ -52,7 +52,7 @@ export function ChapterEngine({ chapter, nextChapterId, prevChapterId }: Chapter
       </div>
 
       {/* Memory Content */}
-      <div className="flex-1 relative">
+      <div className="flex-1 relative overflow-hidden flex flex-col">
         <AnimatePresence mode="wait">
           <MemoryCard 
             key={chapter.memories[currentMemoryIndex].id}
@@ -62,37 +62,30 @@ export function ChapterEngine({ chapter, nextChapterId, prevChapterId }: Chapter
         </AnimatePresence>
       </div>
 
-      {/* Navigation Controls */}
-      <div className="absolute bottom-0 left-0 right-0 p-8 flex justify-between items-center z-50">
-        <button 
+      {/* Navigation Controls — dedicated shrink-0 footer, never overlaps content */}
+      <div
+        className="w-full shrink-0 px-6 pb-8 pt-4 md:px-8 md:pb-10 md:pt-6 flex justify-between items-center z-50 relative bg-gradient-to-t from-[#faf6ee] via-[#faf6ee]/80 to-transparent"
+      >
+        <button
           onClick={handlePrev}
           disabled={isFirstMemory && !prevChapterId}
-          className={`text-sm font-sans tracking-widest uppercase transition-opacity ${isFirstMemory && !prevChapterId ? 'opacity-0 pointer-events-none' : 'opacity-50 hover:opacity-100'} ${chapter.theme === 'light' ? 'text-black' : 'text-white'}`}
+          className={`text-sm font-sans tracking-widest uppercase transition-opacity min-w-[60px] text-left
+            ${isFirstMemory && !prevChapterId ? 'opacity-0 pointer-events-none' : 'opacity-40 hover:opacity-80'}
+            text-[#2c2825]`}
         >
           {chapter.memories[currentMemoryIndex].navigation?.prevLabel || chapter.navigation?.prevLabel || 'Back'}
         </button>
-        
-        <button 
+
+        <button
           onClick={handleNext}
-          className={`px-8 py-4 rounded-full border text-sm font-sans tracking-widest uppercase transition-all ${chapter.theme === 'light' ? 'border-black/20 hover:border-black/60 hover:bg-black/5 text-black' : 'border-white/20 hover:border-white/60 hover:bg-white/5 text-white'}`}
+          className="px-8 py-4 rounded-full border text-sm font-sans tracking-widest uppercase transition-all border-[#2c2825]/20 hover:border-[#2c2825]/50 hover:bg-[#2c2825]/5 text-[#2c2825]"
         >
-          {isLastMemory 
-            ? (chapter.memories[currentMemoryIndex].navigation?.nextLabel || chapter.navigation?.nextLabel || 'Continue') 
+          {isLastMemory
+            ? (chapter.memories[currentMemoryIndex].navigation?.nextLabel || chapter.navigation?.nextLabel || 'Continue')
             : (chapter.memories[currentMemoryIndex].navigation?.nextLabel || 'Next')}
         </button>
-      </div>
-
-      {/* Mobile Tap Zones */}
-      <div className="absolute inset-0 z-40 flex md:hidden pointer-events-none">
-        <div 
-          className="w-1/3 h-full pointer-events-auto" 
-          onClick={handlePrev} 
-        />
-        <div 
-          className="w-2/3 h-full pointer-events-auto" 
-          onClick={handleNext} 
-        />
       </div>
     </div>
   );
 }
+
