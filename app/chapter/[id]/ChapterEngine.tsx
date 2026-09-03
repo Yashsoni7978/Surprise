@@ -64,25 +64,40 @@ export function ChapterEngine({ chapter, nextChapterId, prevChapterId }: Chapter
 
       {/* Navigation Controls — dedicated shrink-0 footer, never overlaps content */}
       <div
-        className="w-full shrink-0 px-6 pb-8 pt-4 md:px-8 md:pb-10 md:pt-6 flex justify-between items-center z-50 relative bg-gradient-to-t from-[#faf6ee] via-[#faf6ee]/80 to-transparent"
+        className="w-full shrink-0 px-5 pb-8 pt-3 md:px-8 md:pb-10 md:pt-5 flex justify-between items-center gap-3 z-50 relative bg-gradient-to-t from-[#faf6ee] via-[#faf6ee]/80 to-transparent"
       >
+        {/* BACK — identical pill style to AAGE */}
         <button
           onClick={handlePrev}
           disabled={isFirstMemory && !prevChapterId}
-          className={`text-sm font-sans tracking-widest uppercase transition-opacity min-w-[60px] text-left
-            ${isFirstMemory && !prevChapterId ? 'opacity-0 pointer-events-none' : 'opacity-40 hover:opacity-80'}
-            text-[#2c2825]`}
+          className={
+            `flex items-center gap-1.5 px-6 py-3.5 rounded-full border text-xs font-sans tracking-widest uppercase
+             transition-all duration-200
+             border-[#2c2825]/22 text-[#2c2825]
+             hover:border-[#2c2825]/50 hover:bg-[#2c2825]/[0.04]
+             active:bg-[#2c2825]/[0.08] active:scale-[0.97]
+             min-w-[90px] justify-center
+             ${isFirstMemory && !prevChapterId ? 'opacity-0 pointer-events-none' : 'opacity-100'}`
+          }
         >
-          {chapter.memories[currentMemoryIndex].navigation?.prevLabel || chapter.navigation?.prevLabel || 'Back'}
+          <span className="opacity-60">←</span>
+          <span>{chapter.memories[currentMemoryIndex].navigation?.prevLabel || chapter.navigation?.prevLabel || 'Back'}</span>
         </button>
 
+        {/* AAGE — same pill style */}
         <button
           onClick={handleNext}
-          className="px-8 py-4 rounded-full border text-sm font-sans tracking-widest uppercase transition-all border-[#2c2825]/20 hover:border-[#2c2825]/50 hover:bg-[#2c2825]/5 text-[#2c2825]"
+          className="flex items-center gap-1.5 px-6 py-3.5 rounded-full border text-xs font-sans tracking-widest uppercase
+             transition-all duration-200
+             border-[#2c2825]/22 text-[#2c2825]
+             hover:border-[#2c2825]/50 hover:bg-[#2c2825]/[0.04]
+             active:bg-[#2c2825]/[0.08] active:scale-[0.97]
+             min-w-[90px] justify-center"
         >
-          {isLastMemory
+          <span>{isLastMemory
             ? (chapter.memories[currentMemoryIndex].navigation?.nextLabel || chapter.navigation?.nextLabel || 'Continue')
-            : (chapter.memories[currentMemoryIndex].navigation?.nextLabel || 'Next')}
+            : (chapter.memories[currentMemoryIndex].navigation?.nextLabel || 'Aage')}</span>
+          <span className="opacity-60">→</span>
         </button>
       </div>
     </div>

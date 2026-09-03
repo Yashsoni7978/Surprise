@@ -97,7 +97,7 @@ export function MemoryCard({ memory, isActive }: MemoryCardProps) {
         )}
       >
         {memory.title && (
-          <h2 className="text-2xl md:text-3xl font-serif text-current/90 font-light text-center opacity-80">
+          <h2 className="text-2xl md:text-3xl font-serif text-[#2c2825] font-normal text-center tracking-wide">
             {memory.title}
           </h2>
         )}
@@ -107,10 +107,10 @@ export function MemoryCard({ memory, isActive }: MemoryCardProps) {
         {memory.text && (
           <div
             className={cn(
-              'font-light text-center transition-all duration-1000 flex flex-col gap-4',
+              'text-center transition-all duration-1000 flex flex-col gap-4 text-[#2c2825]',
               isHero
-                ? 'font-serif text-3xl md:text-5xl leading-tight opacity-90 tracking-wide'
-                : 'font-sans text-lg md:text-xl leading-relaxed opacity-80'
+                ? 'font-serif text-3xl md:text-5xl leading-tight font-normal tracking-wide opacity-90'
+                : 'font-sans text-lg md:text-xl leading-relaxed font-[500] opacity-90'
             )}
           >
             {memory.text.map((paragraph, idx) => (
@@ -127,7 +127,7 @@ export function MemoryCard({ memory, isActive }: MemoryCardProps) {
         )}
 
         {memory.caption && (
-          <p className="text-current/40 text-sm font-sans italic text-center">
+          <p className="text-[#7a6f65] text-sm font-[450] font-sans italic text-center opacity-70">
             {memory.caption}
           </p>
         )}
@@ -150,7 +150,7 @@ export function MemoryCard({ memory, isActive }: MemoryCardProps) {
                 className="w-full flex flex-col items-center gap-6 origin-top"
               >
                 {memory.reveal.text && (
-                  <div className="flex flex-col gap-4 font-sans text-lg leading-relaxed text-center opacity-80 italic">
+                  <div className="flex flex-col gap-4 font-sans text-lg leading-relaxed text-center text-[#2c2825] font-[450] opacity-85 italic">
                     {memory.reveal.text.map((p, idx) => (
                       <p key={idx}>{p}</p>
                     ))}
