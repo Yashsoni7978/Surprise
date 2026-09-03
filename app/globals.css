@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-cinematic-dark: var(--cinematic-dark);
+  --color-cinematic-light: var(--cinematic-light);
+  --color-primary-accent: var(--primary-accent);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-playfair);
+  --font-script: var(--font-script);
+}
+
+:root {
+  --background: #fafafa;
+  --foreground: #111111;
+  --cinematic-dark: #0a0a0a;
+  --cinematic-light: #fafafa;
+  --primary-accent: #9a8c98;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+/* Hide scrollbar for a cleaner cinematic experience but keep functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
