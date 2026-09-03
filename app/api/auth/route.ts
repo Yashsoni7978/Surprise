@@ -4,9 +4,17 @@ export async function POST(request: Request) {
   try {
     const { password } = await request.json();
 
-    // The answer is specific to the couple's relationship/inside joke
-    // We will hardcode this for simplicity, but it provides the privacy barrier.
-    if (password.toLowerCase() === 'sun saathiya' || password === '04092026' || password === '4thsept') {
+    const normalizedPwd = password.toLowerCase().replace(/[^a-z0-9]/g, '');
+    const validSpellings = [
+      'saathiya', 'sathiya', 'saathiuya', 'sathiuya', 'saathia', 'sathia',
+      'sunsaathiya', 'sunsathiya', 'sunsathia', 'sunsaathia'
+    ];
+    
+    const isValid = validSpellings.some(spelling => normalizedPwd.includes(spelling)) || 
+                    password === '04092026' || 
+                    password === '4thsept';
+
+    if (isValid) {
       const response = NextResponse.json({ success: true }, { status: 200 });
       
       // Set HttpOnly cookie for security

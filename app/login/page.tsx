@@ -60,7 +60,7 @@ export default function LoginPage() {
               type="text"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="What song were you dancing to?"
+              placeholder="on whihc song you were dancing in the school"
               className="w-full bg-transparent border-b border-[#2c2825]/20 px-4 py-4 text-center text-lg focus:outline-none focus:border-[#2c2825]/60 transition-colors placeholder:text-[#b5a898] font-serif"
               autoComplete="off"
               spellCheck="false"
