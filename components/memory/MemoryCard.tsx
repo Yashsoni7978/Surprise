@@ -16,7 +16,8 @@ function MediaImage({ asset, className }: { asset: MediaAsset; className?: strin
     <img
       src={asset.src}
       alt={asset.alt || 'Memory'}
-      className={cn('absolute inset-0 w-full h-full object-cover', className)}
+      className={cn('max-w-full max-h-[50vh] md:max-h-[60vh] object-contain rounded-xl shadow-2xl', className)}
+      style={{ width: 'auto', height: 'auto' }}
       onError={() => setError(true)}
     />
   );
@@ -56,16 +57,16 @@ export function MemoryCard({ memory, isActive }: MemoryCardProps) {
             <div
               key={asset.id || idx}
               className={cn(
-                'relative overflow-hidden shrink-0 snap-center transition-all duration-700',
-                // On mobile: images take at most 50vh to leave room for text
+                'relative flex items-center justify-center shrink-0 snap-center transition-all duration-700',
+                // Responsive constraints without cropping
                 assets.length > 1 && memory.layout !== 'stack'
-                  ? 'w-[85%] aspect-square'
-                  : 'w-full aspect-[4/3] max-h-[45vh]',
+                  ? 'w-[85%] max-h-[45vh]'
+                  : 'w-full max-h-[50vh] md:max-h-[60vh]',
                 isPolaroid
                   ? 'bg-white p-4 pb-12 shadow-xl rounded-sm rotate-1'
-                  : 'bg-black/5 rounded-xl shadow-2xl border border-current/10',
-                isChat ? 'bg-green-900/10 border-green-500/20 aspect-auto min-h-[200px]' : '',
-                isLetter ? 'bg-amber-50/10 border-amber-500/20 font-serif' : ''
+                  : 'bg-transparent',
+                isChat ? 'bg-green-900/10 border border-green-500/20 rounded-xl min-h-[200px]' : '',
+                isLetter ? 'bg-amber-50/10 border border-amber-500/20 rounded-xl font-serif' : ''
               )}
             >
               <MediaImage asset={asset} />
